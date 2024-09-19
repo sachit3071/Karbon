@@ -36,6 +36,7 @@ def submit_review():
         rev = {'origianl_review_text': review.review_text,
                'sentiment_category': polarity,
                'polarity score' : score}
+        sentiment.append(rev)
     return jsonify(sentiment, status=200, mimetype='application/json')
 
 if __name__ == "__main__":
