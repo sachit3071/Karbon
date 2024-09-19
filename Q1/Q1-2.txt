@@ -1,0 +1,10 @@
+WITH product_sales AS (
+    SELECT c.product_id, c.product_name, SUM(d.quantity) AS total_quantity_sold
+    FROM products AS c
+    JOIN order_items AS d ON c.product_id = d.product_id
+    GROUP BY 1,2
+)
+SELECT product_id, product_name, total_quantity_sold
+FROM product_sales
+ORDER BY total_quantity_sold DESC
+LIMIT 1;
