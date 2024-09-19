@@ -26,8 +26,16 @@ def submit_review():
     # print(review_text)
     for review in review_text:
         blob = TextBlob(review.review_text)
+        score = blob.sentiment.polarity
+        if score < 0:
+            polarity = "Negative"
+        elif score == 0:
+            polarity = "Neutral"
+        else:
+            polarity = "Positive"
         rev = {'origianl_review_text': review.review_text,
-               'sentiment_category': blob.sentiment.polarity}
+               'sentiment_category': polarity,
+               'polarity score' : score}
     return jsonify(sentiment, status=200, mimetype='application/json')
 
 if __name__ == "__main__":
